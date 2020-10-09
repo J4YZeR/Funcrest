@@ -20,10 +20,10 @@ public class MainController {
 		return "Hello world!";
 	}
 	@GetMapping(path = "/calculate_funcs", produces = "application/stream+json")
-	public ResponseEntity<Flux<String>> calculateFuncs(@RequestParam("func1") String func1,
-									   @RequestParam("func2") String func2,
-									   @RequestParam("iter_num") int iterNum,
-									   @RequestParam("output_mode") String outputMode) {
+	public ResponseEntity<Flux<String>> calculateFuncs(@ApiParam("JS function code") @RequestParam("func1") String func1,
+													   @ApiParam("JS function code") @RequestParam("func2") String func2,
+													   @ApiParam("Number of iterations") @RequestParam("iter_num") int iterNum,
+													   @ApiParam("sorted/unsorted") @RequestParam("output_mode") String outputMode) {
 		try {
 			if(outputMode.equals("sorted")) {
 				return ResponseEntity.ok(service.getSortedResults(func1, func2, iterNum));
